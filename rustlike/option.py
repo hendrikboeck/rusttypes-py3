@@ -41,6 +41,13 @@ R = TypeVar("R")
 
 
 class Option(ABC, Generic[T]):
+    """Option type that represents an optional value.
+
+    Variants:
+
+    - ``Some(T)``: Some value of type ``T``.
+    - ``Nil``: No value.
+    """
 
     @abstractmethod
     def __eq__(self, other: Any) -> bool:
@@ -295,8 +302,8 @@ class Option(ABC, Generic[T]):
         Examples:
             Lets assume the following dataclass that implements the ``Default`` trait::
 
+                from __future__ import annotations
                 from dataclasses import dataclass
-                from typing import TypeVar, Type
                 from rustlike.traits import Default
 
                 T = TypeVar("T")
@@ -305,8 +312,8 @@ class Option(ABC, Generic[T]):
                 class MyType(Default):
                     value: int
 
-                    @classmethod
-                    def default(cls: Type[T]) -> T:
+                    @staticmethod
+                    def default() -> MyType:
                         return MyType(42)
 
             You can now use ``unwrap_or_default`` like this::
@@ -1223,7 +1230,24 @@ class NilType(Option, Generic[T]):
 
 
 Nil: Final = NilType()
+"""A final instance of the ``NilType`` class, representing a ``Nil`` value."""
 
 
 def to_option(opt: Optional[T]) -> Option[T]:
+    """Converts a Python ``Optional`` to a ``Option``.
+
+    Args:
+        opt (Optional[T]): The optional value to convert.
+
+    Returns:
+        Option[T]: The converted option.
+
+    Examples::
+
+        >>> to_option(1)
+        Some(1)
+
+        >>> to_option(None)
+        Nil
+    """
     return Nil if opt is None else Some(opt)

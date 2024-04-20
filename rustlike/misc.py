@@ -30,8 +30,24 @@ from typing import Any
 
 
 def panic(msg: str) -> None:
+    """Raise a RuntimeError with the given message.
+
+    Args:
+        msg (str): The message to be displayed.
+
+    Raises:
+        RuntimeError: The message is displayed.
+    """
     raise RuntimeError(msg)
 
 
 def stringify(e: Any) -> str:
+    """Convert the given object to a string.
+
+    Args:
+        e (Any): The object to be converted.
+
+    Returns:
+        str: The converted object.
+    """
     return str(e)

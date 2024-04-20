@@ -33,8 +33,27 @@ T = TypeVar("T")
 
 
 class Default(ABC):
+    """Default trait for use creating default instances of a type.
+
+    Example::
+
+        from __future__ import annotations
+        from dataclasses import dataclass
+        from rustlike.traits import Default
+
+        @dataclass
+        class Foo(Default):
+            value: int
+
+            @staticmethod
+            def default() -> Foo:
+                return Foo(42)
+
+        assert Foo.default() == Foo(42)
+    """
 
     @classmethod
     @abstractmethod
     def default(cls: Type[T]) -> T:
+        """Protopype method for creating a default instance of a type."""
         raise NotImplementedError
