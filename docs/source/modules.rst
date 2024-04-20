@@ -1,10 +1,11 @@
-``rustlike``
-============
+Modules
+=======
 
 .. toctree::
    :glob:
    :maxdepth: 3
 
-   rustlike/misc/index
-   rustlike/option/index
-   rustlike/result/index
+   modules/misc
+   modules/option/index
+   modules/result/index
+   modules/traits
