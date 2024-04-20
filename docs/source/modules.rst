@@ -1,7 +1,10 @@
-rustlike
-========
+``rustlike``
+============
 
 .. toctree::
-   :maxdepth: 4
+   :glob:
+   :maxdepth: 3
 
-   rustlike
+   rustlike/misc/index
+   rustlike/option/index
+   rustlike/result/index
