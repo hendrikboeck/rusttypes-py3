@@ -100,10 +100,10 @@ def test_is_some_and():
     assert Some(0).is_some_and(lambda x: x == 1) == False
 
 
-def test_is_none():
-    assert Nil.is_none()
-    assert not Some(1).is_none()
-    assert not Some(Nil).is_none()
+def test_is_nil():
+    assert Nil.is_nil()
+    assert not Some(1).is_nil()
+    assert not Some(Nil).is_nil()
 
 
 def test_expect():
@@ -339,15 +339,11 @@ def test_zip_with():
         x: float
         y: float
 
-        @staticmethod
-        def new(x: float, y: float) -> Foo:
-            return Foo(x, y)
-
     x = Some(3.14)
     y = Some(42.0)
 
-    assert x.zip_with(y, Foo.new) == Some(Foo(3.14, 42.0))
-    assert x.zip_with(Nil, Foo.new) == Nil
+    assert x.zip_with(y, Foo) == Some(Foo(3.14, 42.0))
+    assert x.zip_with(Nil, Foo) == Nil
 
 
 def test_unzip():
