@@ -1,12 +1,13 @@
 [tool.poetry]
 name = "rustlike"
-version = "0.0.1"
+version = "0.0.2"
 description = "Extra Datatypes for Python 3"
 authors = ["Hendrik Boeck <hendrikboeck.dev@protonmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+poetry-bumpversion = "^0.3.2"
 
 [tool.poetry.dev-dependencies]
 yapf = "^0.31.0"
@@ -17,6 +18,16 @@ pytest = "^8.1.1"
 #sphinx = "<7.0.0"
 sphinx = "^7.3.7"
 qiskit-sphinx-theme = "^1.16.1"
+
+[[tool.poetry_bumpversion.replacements]]
+file = ["rustlike/__init__.py"]
+search = "__version__ = \"{current_version}\""
+replace = "__version__ = \"{new_version}\""
+
+[[tool.poetry_bumpversion.replacements]]
+file = ["docs/source/conf.py"]
+search = "release = '{current_version}'"
+replace = "release = '{new_version}'"
 
 [build-system]
 requires = ["poetry-core"]
