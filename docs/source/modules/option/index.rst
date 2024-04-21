@@ -1,26 +1,26 @@
 ``rustlike.option``
 ===================
 
-Members
--------
-
 .. automodule:: rustlike.option
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
-   :exclude-members: Nil, Option, Some, NilType
-
-.. autodata:: rustlike.option.Nil
-   :annotation: = rustlike.option.NilType()
-   :no-value:
+   :exclude-members: Nil, Option, Some, NilType, to_option
 
 Classes
 -------
 
 .. toctree::
    :maxdepth: 2
+   :titlesonly:
 
    option
    some
    nil
+
+Members
+-------
+
+.. autodata:: rustlike.option.Nil
+   :annotation: = rustlike.option.NilType()
+   :no-value:
+
+.. autofunction:: rustlike.option.to_option
+

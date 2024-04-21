@@ -4,8 +4,6 @@ import sys
 sys.path.insert(0, os.path.abspath('..'))
 sys.path.insert(0, os.path.abspath('../..'))
 
-#import rtcat_sphinx_theme
-
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -36,7 +34,6 @@ exclude_patterns = []
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'qiskit-ecosystem'
-#html_theme_path = [rtcat_sphinx_theme.get_html_theme_path()]
 html_static_path = ['_static']
 
 html_theme_options = {

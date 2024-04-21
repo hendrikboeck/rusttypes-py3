@@ -2,15 +2,12 @@
 
     <div style="visibility: hidden; height: 0px; padding: 0px; margin: 0px;">
 
-``Err[E]``
-==========
+``ResultException``
+===================
 
 .. raw:: html
 
     </div>
 
-..  autoclass:: rustlike.result::Err
-    :members:
-    :undoc-members:
-    :inherited-members:
+..  autoclass:: rustlike.result::ResultException
     :show-inheritance:
