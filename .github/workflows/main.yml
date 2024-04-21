@@ -2,16 +2,17 @@ name: Workflow for Push on Main Branch
 
 on:
   push:
-    branches:
-    - main
+    tags:
+    - '**'
 
 jobs:
   pytest:
+    name: Run tests
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        python-version: ["3.11"]
+        python-version: ["3.11", "3.12"]
 
     steps:
     - uses: actions/checkout@v4
@@ -34,11 +35,12 @@ jobs:
         poetry run pytest
 
   pytype:
+    name: Static type checking
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        python-version: ["3.11"]
+        python-version: ["3.11", "3.12"]
 
     steps:
     - uses: actions/checkout@v4
@@ -61,11 +63,12 @@ jobs:
         poetry run pytype
 
   pylint:
+    name: Lint code
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        python-version: ["3.11"]
+        python-version: ["3.11", "3.12"]
 
     steps:
     - uses: actions/checkout@v4
@@ -88,6 +91,7 @@ jobs:
         poetry run pylint rustlike tests
 
   build:
+    name: Build package
     needs: [pytest, pytype, pylint]
 
     runs-on: ubuntu-latest
@@ -117,7 +121,58 @@ jobs:
         poetry build
 
     - name: Upload package
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
-        name: wheel
-        path: dist/*.whl
+        name: rustlike-latest-py3
+        path: dist/*
+
+  update-documentation:
+    name: Update documentation
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install dependecies
+      run: |
+        python -m pip install --upgrade pip
+        pip install make poetry
+        poetry config virtualenvs.create false --local
+        poetry config virtualenvs.in-project false --local
+        poetry install
+
+    - name: Build documentation
+      run: |
+        cd docs && make html
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        publish_branch: gh-pages
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/_build/html
+        force_orphan: true
+
+  publish-to-pypi:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: pypi
+      url: https://pypi.org/p/rustlike-py
+
+    permissions:
+      id-token: write
+
+    steps:
+    - name: Download all the dists
+      uses: actions/download-artifact@v3
+      with:
+        name: rustlike-latest-py3
+        path: dist
+
+    - name: Publish distribution to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+
