@@ -55,7 +55,7 @@ jobs:
 
     - name: Run type checking
       run: |
-        poetry run pytype
+        poetry run pytype -V ${{ matrix.python-version }}
 
   pylint:
     runs-on: ubuntu-latest

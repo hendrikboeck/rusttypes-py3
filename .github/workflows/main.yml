@@ -60,7 +60,7 @@ jobs:
 
     - name: Run type checking
       run: |
-        poetry run pytype
+        poetry run pytype -V ${{ matrix.python-version }}
 
   pylint:
     name: Lint code

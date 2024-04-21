@@ -1,9 +1,35 @@
 [tool.poetry]
 name = "rustlike"
-version = "0.0.2"
+version = "0.0.3"
 description = "Extra Datatypes for Python 3"
 authors = ["Hendrik Boeck <hendrikboeck.dev@protonmail.com>"]
 readme = "README.md"
+license = "BSD-3-Clause"
+homepage = "https://hendrikboeck.github.io/rustlike-py"
+repository = "https://github.com/hendrikboeck/rustlike-py"
+documentation = "https://hendrikboeck.github.io/rustlike-py"
+keywords = [
+    "rustlike",
+    "rust",
+    "result",
+    "option",
+    "types",
+    "python",
+    "datastructures",
+    "datatypes",
+    "collections",
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -35,7 +61,6 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.pytype]
 inputs = ["tests", "rustlike"]
-python_version = "3.11"
 disable = []
 
 [tool.pylint.'MESSAGES CONTROL']
