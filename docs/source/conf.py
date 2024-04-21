@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 project = 'rustlike'
 copyright = '2024, Hendrik Böck <hendrikboeck.dev@protonmail.com>'
 author = 'Hendrik Böck <hendrikboeck.dev@protonmail.com>'
-release = '0.0.3'
+release = '0.0.1'
 html_title = f"{project} {release}"
 
 # -- General configuration ---------------------------------------------------

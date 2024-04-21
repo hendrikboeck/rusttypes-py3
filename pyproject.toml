@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rustlike"
-version = "0.0.3"
+version = "0.0.1"
 description = "Extra Datatypes for Python 3"
 authors = ["Hendrik Boeck <hendrikboeck.dev@protonmail.com>"]
 readme = "README.md"
@@ -33,7 +33,6 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.11"
-poetry-bumpversion = "^0.3.2"
 
 [tool.poetry.dev-dependencies]
 yapf = "^0.31.0"
