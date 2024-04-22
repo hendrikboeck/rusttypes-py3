@@ -39,7 +39,7 @@ or using `pyproject.toml`:
 
 ```toml
 [tool.poetry.dependencies]
-rusttypes = "^0.0.1"
+rusttypes = "^0.1.0"
 ```
 
 ## Documentation

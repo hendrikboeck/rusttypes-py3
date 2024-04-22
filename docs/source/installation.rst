@@ -18,4 +18,4 @@ or using ``pyproject.toml``:
 .. code-block:: toml
 
     [tool.poetry.dependencies]
-    rusttypes = "^0.0.1"
+    rusttypes = "^0.1.0"

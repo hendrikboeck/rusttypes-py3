@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rusttypes"
-version = "0.0.1"
+version = "0.1.0"
 description = "Extra Datatypes for Python 3"
 authors = ["Hendrik Boeck <hendrikboeck.dev@protonmail.com>"]
 readme = "README.md"
