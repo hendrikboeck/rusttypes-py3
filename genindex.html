@@ -1,0 +1,963 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.01.29 --><title>Index - rusttypes 0.1.0</title>
+<link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/qiskit-sphinx-theme.css?v=fe84956c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/qiskit-ecosystem.css?v=745c5aa7" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<script src="_static/js/web-components/top-nav-bar.js"></script></head>
+  <body>
+    
+    <script>document.body.dataset.theme = "light";</script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <defs><style>.cls-1{fill:none;}</style></defs>
+      <path d="M28,4H4A2,2,0,0,0,2,6V26a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V6A2,2,0,0,0,28,4ZM4,6H20V26H4ZM28,26H22V6h6Z"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <defs><style>.cls-1{fill:none;}</style></defs>
+      <rect x="4" y="6" width="24" height="2"/>
+      <rect x="4" y="24" width="24" height="2"/>
+      <rect x="4" y="12" width="24" height="2"/>
+      <rect x="4" y="18" width="24" height="2"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+         viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"><polygon points="22,16 12,26 10.6,24.6 19.2,16 10.6,7.4 12,6 " stroke="currentColor"/>
+      <rect id="_x3C_Transparent_Rectangle_x3E_" fill="none" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-new-tab" viewBox="0 0 32 32">
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+      <defs>
+        <style>
+          .cls-1 {
+            fill: none;
+          }
+        </style>
+      </defs>
+      <path fill="#6929C4" d="M26,28H6a2.0027,2.0027,0,0,1-2-2V6A2.0027,2.0027,0,0,1,6,4H16V6H6V26H26V16h2V26A2.0027,2.0027,0,0,1,26,28Z"/>
+      <polygon fill="#6929C4" points="20 2 20 4 26.586 4 18 12.586 19.414 14 28 5.414 28 12 30 12 30 2 20 2"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">rusttypes 0.1.0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky">
+<a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">rusttypes 0.1.0</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">Modules</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Modules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/misc.html"><code class="docutils literal notranslate"><span class="pre">rusttypes.misc</span></code></a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="modules/option/index.html"><code class="docutils literal notranslate"><span class="pre">rusttypes.option</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of rusttypes.option</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/option/option.html"><code class="docutils literal notranslate"><span class="pre">Option[T]</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/option/some.html"><code class="docutils literal notranslate"><span class="pre">Some[T]</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/option/nil.html"><code class="docutils literal notranslate"><span class="pre">NilType</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="modules/result/index.html"><code class="docutils literal notranslate"><span class="pre">rusttypes.result</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of rusttypes.result</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/result/result.html"><code class="docutils literal notranslate"><span class="pre">Result[T,</span> <span class="pre">E]</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/result/ok.html"><code class="docutils literal notranslate"><span class="pre">Ok[T]</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/result/err.html"><code class="docutils literal notranslate"><span class="pre">Err[E]</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/result/result_exception.html"><code class="docutils literal notranslate"><span class="pre">ResultException</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/traits.html"><code class="docutils literal notranslate"><span class="pre">rusttypes.traits</span></code></a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License (<cite>3-Clause BSD License</cite>)</a></li>
+</ul>
+
+</div></div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<section class="genindex-section">
+  <h1 id="index">Index</h1>
+  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#X"><strong>X</strong></a> | <a href="#Z"><strong>Z</strong></a></div>
+</section>
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.and_">and_() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.and_">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.and_">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.and_">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.and_">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.and_">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.and_then">and_then() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.and_then">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.and_then">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.and_then">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.and_then">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.and_then">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.as_optional">as_optional() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.as_optional">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.as_optional">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/result/index.html#rusttypes.result.catch">catch() (in module rusttypes.result)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="D" class="genindex-section">
+  <h2>D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/traits.html#rusttypes.traits.Default">Default (class in rusttypes.traits)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/traits.html#rusttypes.traits.Default.default">default() (rusttypes.traits.Default class method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/result/err.html#rusttypes.result.Err">Err (class in rusttypes.result)</a>
+</li>
+        <li><a href="modules/result/err.html#rusttypes.result.Err.err">err() (rusttypes.result.Err method)</a>
+
+        <ul>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.err">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.err">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.expect">expect() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.expect">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.expect">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.expect">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.expect">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.expect">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/result/err.html#rusttypes.result.Err.expect_err">expect_err() (rusttypes.result.Err method)</a>
+
+        <ul>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.expect_err">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.expect_err">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="F" class="genindex-section">
+  <h2>F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.filter">filter() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.filter">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.filter">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.flatten">flatten() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.flatten">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.flatten">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.get_or_insert">get_or_insert() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.get_or_insert">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.get_or_insert">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.get_or_insert_default">get_or_insert_default() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.get_or_insert_default">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.get_or_insert_default">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.get_or_insert_with">get_or_insert_with() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.get_or_insert_with">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.get_or_insert_with">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="I" class="genindex-section">
+  <h2>I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/some.html#rusttypes.option.Some.inner">inner (rusttypes.option.Some attribute)</a>
+
+        <ul>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.inner">(rusttypes.result.Err attribute)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.inner">(rusttypes.result.Ok attribute)</a>
+</li>
+          <li><a href="modules/result/result_exception.html#rusttypes.result.ResultException.inner">(rusttypes.result.ResultException attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.insert">insert() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.insert">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.insert">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.inspect">inspect() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.inspect">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.inspect">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.inspect">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.inspect">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.inspect">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/result/err.html#rusttypes.result.Err.inspect_err">inspect_err() (rusttypes.result.Err method)</a>
+
+        <ul>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.inspect_err">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.inspect_err">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/result/err.html#rusttypes.result.Err.is_err">is_err() (rusttypes.result.Err method)</a>
+
+        <ul>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.is_err">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.is_err">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/result/err.html#rusttypes.result.Err.is_err_and">is_err_and() (rusttypes.result.Err method)</a>
+
+        <ul>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.is_err_and">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.is_err_and">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.is_nil">is_nil() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.is_nil">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.is_nil">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/result/err.html#rusttypes.result.Err.is_ok">is_ok() (rusttypes.result.Err method)</a>
+
+        <ul>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.is_ok">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.is_ok">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/result/err.html#rusttypes.result.Err.is_ok_and">is_ok_and() (rusttypes.result.Err method)</a>
+
+        <ul>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.is_ok_and">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.is_ok_and">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.is_some">is_some() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.is_some">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.is_some">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.is_some_and">is_some_and() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.is_some_and">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.is_some_and">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.map">map() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.map">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.map">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.map">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.map">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.map">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/result/err.html#rusttypes.result.Err.map_err">map_err() (rusttypes.result.Err method)</a>
+
+        <ul>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.map_err">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.map_err">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.map_or">map_or() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.map_or">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.map_or">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.map_or">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.map_or">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.map_or">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.map_or_else">map_or_else() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.map_or_else">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.map_or_else">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.map_or_else">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.map_or_else">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.map_or_else">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li>
+    module
+
+        <ul>
+          <li><a href="modules/misc.html#module-rusttypes.misc">rusttypes.misc</a>
+</li>
+          <li><a href="modules/option/index.html#module-rusttypes.option">rusttypes.option</a>
+</li>
+          <li><a href="modules/result/index.html#module-rusttypes.result">rusttypes.result</a>
+</li>
+          <li><a href="modules/traits.html#module-rusttypes.traits">rusttypes.traits</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="N" class="genindex-section">
+  <h2>N</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/index.html#rusttypes.option.Nil">Nil (in module rusttypes.option)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType">NilType (class in rusttypes.option)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="O" class="genindex-section">
+  <h2>O</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/result/ok.html#rusttypes.result.Ok">Ok (class in rusttypes.result)</a>
+</li>
+        <li><a href="modules/result/err.html#rusttypes.result.Err.ok">ok() (rusttypes.result.Err method)</a>
+
+        <ul>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.ok">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.ok">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.ok_or">ok_or() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.ok_or">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.ok_or">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.ok_or_else">ok_or_else() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.ok_or_else">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.ok_or_else">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/option.html#rusttypes.option.Option">Option (class in rusttypes.option)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.or_">or_() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.or_">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.or_">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.or_">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.or_">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.or_">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.or_else">or_else() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.or_else">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.or_else">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.or_else">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.or_else">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.or_else">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/misc.html#rusttypes.misc.panic">panic() (in module rusttypes.misc)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.replace">replace() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.replace">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.replace">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/result/result.html#rusttypes.result.Result">Result (class in rusttypes.result)</a>
+</li>
+        <li><a href="modules/result/result_exception.html#rusttypes.result.ResultException">ResultException (class in rusttypes.result)</a>
+</li>
+        <li>
+    rusttypes.misc
+
+        <ul>
+          <li><a href="modules/misc.html#module-rusttypes.misc">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    rusttypes.option
+
+        <ul>
+          <li><a href="modules/option/index.html#module-rusttypes.option">module</a>
+</li>
+        </ul></li>
+        <li>
+    rusttypes.result
+
+        <ul>
+          <li><a href="modules/result/index.html#module-rusttypes.result">module</a>
+</li>
+        </ul></li>
+        <li>
+    rusttypes.traits
+
+        <ul>
+          <li><a href="modules/traits.html#module-rusttypes.traits">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="S" class="genindex-section">
+  <h2>S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/some.html#rusttypes.option.Some">Some (class in rusttypes.option)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/misc.html#rusttypes.misc.stringify">stringify() (in module rusttypes.misc)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="T" class="genindex-section">
+  <h2>T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.take">take() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.take">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.take">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/index.html#rusttypes.option.to_option">to_option() (in module rusttypes.option)</a>
+</li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.transpose">transpose() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.transpose">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.transpose">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/result/err.html#rusttypes.result.Err.try_">try_() (rusttypes.result.Err method)</a>
+
+        <ul>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.try_">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.try_">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/result/index.html#rusttypes.result.try_guard">try_guard() (in module rusttypes.result)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="U" class="genindex-section">
+  <h2>U</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.unwrap">unwrap() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.unwrap">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.unwrap">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.unwrap">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.unwrap">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.unwrap">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/result/err.html#rusttypes.result.Err.unwrap_err">unwrap_err() (rusttypes.result.Err method)</a>
+
+        <ul>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.unwrap_err">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.unwrap_err">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/result/err.html#rusttypes.result.Err.unwrap_err_unchecked">unwrap_err_unchecked() (rusttypes.result.Err method)</a>
+
+        <ul>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.unwrap_err_unchecked">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.unwrap_err_unchecked">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.unwrap_or">unwrap_or() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.unwrap_or">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.unwrap_or">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.unwrap_or">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.unwrap_or">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.unwrap_or">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.unwrap_or_default">unwrap_or_default() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.unwrap_or_default">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.unwrap_or_default">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.unwrap_or_default">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.unwrap_or_default">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.unwrap_or_default">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.unwrap_or_else">unwrap_or_else() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.unwrap_or_else">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.unwrap_or_else">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.unwrap_or_else">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.unwrap_or_else">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.unwrap_or_else">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.unwrap_unchecked">unwrap_unchecked() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.unwrap_unchecked">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.unwrap_unchecked">(rusttypes.option.Some method)</a>
+</li>
+          <li><a href="modules/result/err.html#rusttypes.result.Err.unwrap_unchecked">(rusttypes.result.Err method)</a>
+</li>
+          <li><a href="modules/result/ok.html#rusttypes.result.Ok.unwrap_unchecked">(rusttypes.result.Ok method)</a>
+</li>
+          <li><a href="modules/result/result.html#rusttypes.result.Result.unwrap_unchecked">(rusttypes.result.Result method)</a>
+</li>
+        </ul></li>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.unzip">unzip() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.unzip">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.unzip">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="X" class="genindex-section">
+  <h2>X</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.xor">xor() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.xor">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.xor">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="Z" class="genindex-section">
+  <h2>Z</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.zip">zip() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.zip">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.zip">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/option/nil.html#rusttypes.option.NilType.zip_with">zip_with() (rusttypes.option.NilType method)</a>
+
+        <ul>
+          <li><a href="modules/option/option.html#rusttypes.option.Option.zip_with">(rusttypes.option.Option method)</a>
+</li>
+          <li><a href="modules/option/some.html#rusttypes.option.Some.zip_with">(rusttypes.option.Some method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+
+        </article>
+      </div>
+      <footer>
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Hendrik Böck &lt;hendrikboeck.dev@protonmail.com&gt;
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/qiskit-sphinx-theme.js?v=4d77b8ca"></script>
+    </body>
+</html>
