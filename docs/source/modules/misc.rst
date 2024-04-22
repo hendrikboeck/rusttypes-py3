@@ -1,10 +1,10 @@
-``rustlike.misc``
+``rusttypes.misc``
 =================
 
 Members
 -------
 
-.. automodule:: rustlike.misc
+.. automodule:: rusttypes.misc
    :members:
    :undoc-members:
    :show-inheritance:

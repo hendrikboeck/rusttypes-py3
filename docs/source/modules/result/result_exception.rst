@@ -9,5 +9,5 @@
 
     </div>
 
-..  autoclass:: rustlike.result::ResultException
+..  autoclass:: rusttypes.result::ResultException
     :show-inheritance:

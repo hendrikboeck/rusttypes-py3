@@ -1,15 +1,15 @@
 [tool.poetry]
-name = "rustlike"
+name = "rusttypes"
 version = "0.0.1"
 description = "Extra Datatypes for Python 3"
 authors = ["Hendrik Boeck <hendrikboeck.dev@protonmail.com>"]
 readme = "README.md"
 license = "BSD-3-Clause"
-homepage = "https://hendrikboeck.github.io/rustlike-py"
-repository = "https://github.com/hendrikboeck/rustlike-py"
-documentation = "https://hendrikboeck.github.io/rustlike-py"
+homepage = "https://hendrikboeck.github.io/rusttypes"
+repository = "https://github.com/hendrikboeck/rusttypes"
+documentation = "https://hendrikboeck.github.io/rusttypes"
 keywords = [
-    "rustlike",
+    "rusttypes",
     "rust",
     "result",
     "option",
@@ -45,7 +45,7 @@ sphinx = "^7.3.7"
 qiskit-sphinx-theme = "^1.16.1"
 
 [[tool.poetry_bumpversion.replacements]]
-file = ["rustlike/__init__.py"]
+file = ["rusttypes/__init__.py"]
 search = "__version__ = \"{current_version}\""
 replace = "__version__ = \"{new_version}\""
 
@@ -59,7 +59,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pytype]
-inputs = ["tests", "rustlike"]
+inputs = ["tests", "rusttypes"]
 disable = []
 
 [tool.pylint.'MESSAGES CONTROL']

@@ -1,7 +1,7 @@
-``rustlike.traits``
+``rusttypes.traits``
 ===================
 
-.. automodule:: rustlike.traits
+.. automodule:: rusttypes.traits
    :members:
    :undoc-members:
    :show-inheritance:

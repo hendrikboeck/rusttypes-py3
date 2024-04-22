@@ -1,7 +1,7 @@
-``rustlike.result``
+``rusttypes.result``
 ===================
 
-.. automodule:: rustlike.result
+.. automodule:: rusttypes.result
    :exclude-members: catch, try_guard, ResultException, Result, Ok, Err
 
 Classes
@@ -19,6 +19,6 @@ Classes
 Members
 -------
 
-.. autodecorator:: rustlike.result.catch
+.. autodecorator:: rusttypes.result.catch
 
-.. autodecorator:: rustlike.result.try_guard
+.. autodecorator:: rusttypes.result.try_guard

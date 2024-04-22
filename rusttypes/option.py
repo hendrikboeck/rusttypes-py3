@@ -304,7 +304,7 @@ class Option(ABC, Generic[T]):
 
                 from __future__ import annotations
                 from dataclasses import dataclass
-                from rustlike.traits import Default
+                from rusttypes.traits import Default
 
                 T = TypeVar("T")
 
@@ -739,7 +739,7 @@ class Option(ABC, Generic[T]):
 
                 from dataclasses import dataclass
                 from typing import TypeVar, Type
-                from rustlike.traits import Default
+                from rusttypes.traits import Default
 
                 T = TypeVar("T")
 

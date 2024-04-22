@@ -5,17 +5,17 @@ Install using ``pip``:
 
 .. code-block:: bash
 
-    pip install rustlike-py
+    pip install rusttypes
 
 Install using ``poetry`` cli:
 
 .. code-block:: bash
 
-    poetry add rustlike-py
+    poetry add rusttypes
 
 or using ``pyproject.toml``:
 
 .. code-block:: toml
 
     [tool.poetry.dependencies]
-    rustlike-py = "^0.0.1"
+    rusttypes = "^0.0.1"

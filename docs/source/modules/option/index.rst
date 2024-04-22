@@ -1,7 +1,7 @@
-``rustlike.option``
+``rusttypes.option``
 ===================
 
-.. automodule:: rustlike.option
+.. automodule:: rusttypes.option
    :exclude-members: Nil, Option, Some, NilType, to_option
 
 Classes
@@ -18,9 +18,9 @@ Classes
 Members
 -------
 
-.. autodata:: rustlike.option.Nil
-   :annotation: = rustlike.option.NilType()
+.. autodata:: rusttypes.option.Nil
+   :annotation: = rusttypes.option.NilType()
    :no-value:
 
-.. autofunction:: rustlike.option.to_option
+.. autofunction:: rusttypes.option.to_option
 

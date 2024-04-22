@@ -412,7 +412,7 @@ class Result(ABC, Generic[T, E]):
 
                 from __future__ import annotations
                 from dataclasses import dataclass
-                from rustlike.traits import Default
+                from rusttypes.traits import Default
 
                 T = TypeVar("T")
 
@@ -936,7 +936,7 @@ def catch(*exceptions: Type[BaseException], map_err: Callable[[BaseException], E
     Args:
         *exceptions (Type[BaseException]): The exceptions to catch.
         map_err (Callable[[BaseException], E]): The function to map the caught exception to the error type of the
-            ``Result``. Defaults to ``rustlike.misc.stringify``.
+            ``Result``. Defaults to ``rusttypes.misc.stringify``.
 
     Returns:
         Callable[[Callable[..., Result[T, E]]], Callable[..., Result[T, E]]]: Decorator that catches the specified exceptions and returns them as ``Err``.

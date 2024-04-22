@@ -9,7 +9,7 @@
 
     </div>
 
-..  autoclass:: rustlike.result::Result
+..  autoclass:: rusttypes.result::Result
     :members:
     :undoc-members:
     :inherited-members:

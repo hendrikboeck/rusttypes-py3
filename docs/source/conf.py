@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'rustlike'
+project = 'rusttypes'
 copyright = '2024, Hendrik Böck <hendrikboeck.dev@protonmail.com>'
 author = 'Hendrik Böck <hendrikboeck.dev@protonmail.com>'
 release = '0.0.1'

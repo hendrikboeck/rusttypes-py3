@@ -10,7 +10,7 @@
     </div>
 
 
-..  autoclass:: rustlike.option::NilType
+..  autoclass:: rusttypes.option::NilType
     :members:
     :undoc-members:
     :inherited-members:

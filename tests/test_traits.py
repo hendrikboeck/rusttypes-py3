@@ -29,7 +29,7 @@
 from dataclasses import dataclass
 from typing import Type, TypeVar
 
-from rustlike.traits import Default
+from rusttypes.traits import Default
 
 
 def test_default():

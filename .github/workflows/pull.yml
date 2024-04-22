@@ -82,7 +82,7 @@ jobs:
 
     - name: Run linting
       run: |
-        poetry run pylint rustlike tests
+        poetry run pylint rusttypes tests
 
   build:
     needs: [pytest, pytype, pylint]

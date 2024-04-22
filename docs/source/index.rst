@@ -1,9 +1,9 @@
-Welcome to ``rustlike-py``'s documentation!
+Welcome to ``rusttypes``'s documentation!
 ===========================================
 
    `Bring the power of Rust to Python! Kind of...`
 
-``rustlike-py`` is a Python 3 library that provides a set of utilities to write
+``rusttypes`` is a Python 3 library that provides a set of utilities to write
 Python code that is more Rust-like. This includes:
 
 - A ``Result`` type that can be used to return either a value or an error.
@@ -16,7 +16,7 @@ allows it, and I was able to implement it. (:
 Getting Started
 ---------------
 
-GitHub Repository: https://github.com/hendrikboeck/rustlike-py
+GitHub Repository: https://github.com/hendrikboeck/rusttypes
 
 .. toctree::
    :maxdepth: 2

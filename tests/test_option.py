@@ -32,9 +32,9 @@ from dataclasses import dataclass
 from types import NoneType
 from typing import Type, TypeVar
 
-from rustlike.option import Option, Nil, Some, to_option
-from rustlike.result import Err, Ok
-from rustlike.traits import Default
+from rusttypes.option import Option, Nil, Some, to_option
+from rusttypes.result import Err, Ok
+from rusttypes.traits import Default
 
 T = TypeVar("T")
 

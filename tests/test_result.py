@@ -30,8 +30,8 @@ import math
 from typing import Type, TypeVar
 from dataclasses import dataclass
 
-from rustlike.option import Nil, Some
-from rustlike.result import Result, Ok, Err, Default, catch, try_guard
+from rusttypes.option import Nil, Some
+from rusttypes.result import Result, Ok, Err, Default, catch, try_guard
 
 
 def test_is_ok():

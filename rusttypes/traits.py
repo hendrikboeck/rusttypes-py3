@@ -39,7 +39,7 @@ class Default(ABC):
 
         from __future__ import annotations
         from dataclasses import dataclass
-        from rustlike.traits import Default
+        from rusttypes.traits import Default
 
         @dataclass
         class Foo(Default):

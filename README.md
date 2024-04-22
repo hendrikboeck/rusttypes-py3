@@ -1,6 +1,6 @@
-# `rustlike-py` - The power of Rust in Python
+# `rusttypes-py3` - The power of Rust in Python
 
-- [`rustlike-py` - The power of Rust in Python](#rustlike-py---the-power-of-rust-in-python)
+- [`rusttypes-py3` - The power of Rust in Python](#rusttypes-py3---the-power-of-rust-in-python)
   - [Why?](#why)
   - [Getting Started](#getting-started)
   - [Documentation](#documentation)
@@ -11,7 +11,7 @@
 
 >   Bring the power of Rust to Python! Kind of...
 
-``rustlike-py`` is a Python 3 library that provides a set of utilities to write
+``rusttypes`` is a Python 3 library that provides a set of utilities to write
 Python code that is more Rust-like. This includes:
 
 - A ``Result`` type that can be used to return either a value or an error.
@@ -26,25 +26,25 @@ allows it, and I was able to implement it. (:
 Install using `pip`:
 
 ```
-pip install rustlike-py
+pip install rusttypes
 ```
 
 Install using `poetry` CLI:
 
 ```
-poetry add rustlike-py
+poetry add rusttypes
 ```
 
 or using `pyproject.toml`:
 
 ```toml
 [tool.poetry.dependencies]
-rustlike-py = "^0.0.1"
+rusttypes = "^0.0.1"
 ```
 
 ## Documentation
 
-Sphinx Documentation at: [https://hendrikboeck.github.io/rustlike-py/](https://hendrikboeck.github.io/rustlike-py/)
+Sphinx Documentation at: [https://hendrikboeck.github.io/rusttypes/](https://hendrikboeck.github.io/rusttypes/)
 
 ## License (_BSD 3-Clause License_)
 
