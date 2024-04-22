@@ -5,9 +5,9 @@ description = "Extra Datatypes for Python 3"
 authors = ["Hendrik Boeck <hendrikboeck.dev@protonmail.com>"]
 readme = "README.md"
 license = "BSD-3-Clause"
-homepage = "https://hendrikboeck.github.io/rusttypes"
-repository = "https://github.com/hendrikboeck/rusttypes"
-documentation = "https://hendrikboeck.github.io/rusttypes"
+homepage = "https://hendrikboeck.github.io/rusttypes-p3"
+repository = "https://github.com/hendrikboeck/rusttypes-py3"
+documentation = "https://hendrikboeck.github.io/rusttypes-py3"
 keywords = [
     "rusttypes",
     "rust",

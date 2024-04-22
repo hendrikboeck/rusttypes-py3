@@ -16,7 +16,7 @@ allows it, and I was able to implement it. (:
 Getting Started
 ---------------
 
-GitHub Repository: https://github.com/hendrikboeck/rusttypes
+GitHub Repository: https://github.com/hendrikboeck/rusttypes-py3
 
 .. toctree::
    :maxdepth: 2
