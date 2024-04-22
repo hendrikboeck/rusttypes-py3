@@ -1,5 +1,7 @@
 # `rusttypes-py3` - The power of Rust in Python
 
+## Table of Contents
+
 - [`rusttypes-py3` - The power of Rust in Python](#rusttypes-py3---the-power-of-rust-in-python)
   - [Why?](#why)
   - [Getting Started](#getting-started)
@@ -44,7 +46,7 @@ rusttypes = "^0.1.0"
 
 ## Documentation
 
-Sphinx Documentation at: [https://hendrikboeck.github.io/rusttypes/](https://hendrikboeck.github.io/rusttypes/)
+Sphinx Documentation at: [https://hendrikboeck.github.io/rusttypes-py3/](https://hendrikboeck.github.io/rusttypes-py3/)
 
 ## License (_BSD 3-Clause License_)
 
