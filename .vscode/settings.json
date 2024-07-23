@@ -1,0 +1,8 @@
+{
+    "editor.rulers": [
+        100
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+}

@@ -30,7 +30,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from functools import wraps
-from typing import Any, Callable, Generic, Type, TypeVar
+from typing import Any, Callable, Generic, TypeVar
 
 from . import option as o
 from .traits import Default
@@ -43,8 +43,9 @@ F = TypeVar("F")
 
 
 class ResultException(Exception, Generic[E]):
-    """Exception that is thrown when calling ``Result::try_`` on an ``Err``. The inner value is the error that caused the
-    exception. This exception is caught by the ``try_guard`` decorator. This type is not meant to be used by the user.
+    """Exception that is thrown when calling ``Result::try_`` on an ``Err``. The inner value is the
+    error that caused the exception. This exception is caught by the ``try_guard`` decorator. This
+    type is not meant to be used by the user.
 
     Attributes:
         inner (E): The error that caused the exception.
@@ -68,16 +69,50 @@ class ResultException(Exception, Generic[E]):
 
 
 class Result(ABC, Generic[T, E]):
-    """Result type that represents either a successful value or an error. The ``Result`` type is a sum type that can be
-    either an ``Ok`` or an ``Err``. The ``Ok`` variant holds the successful value, while the ``Err`` variant holds the
-    error value. The ``Result`` type is used to handle errors in a functional way. The ``Result`` type is inspired by
-    Rust's ``Result`` type.
+    """Result type that represents either a successful value or an error. The ``Result`` type is a
+    sum type that can be either an ``Ok`` or an ``Err``. The ``Ok`` variant holds the successful
+    value, while the ``Err`` variant holds the error value. The ``Result`` type is used to handle
+    errors in a functional way. The ``Result`` type is inspired by Rust's ``Result`` type.
 
     Variants:
 
     - ``Ok(T)``: Represents a successful value ``T``.
     - ``Err(E)``: Represents an error value of type ``E``.
     """
+
+    @staticmethod
+    def from_fn(
+        fn: Callable[[], T], error_type: type[E] | tuple[type[E], ...] = Exception
+    ) -> Result[T, E]:
+        """Creates a ``Result`` from a function that can throw an exception. If the function throws
+        an exception (``err``), the exception is caught and returned as an ``Err``. Otherwise, the
+        value is returned as an ``Ok``.
+
+        Args:
+            fn (Callable[[], T]): The function to call.
+            err (Type[E] | tuple[Type[E], ...]): The exception to catch. Defaults to ``Exception``.
+
+        Returns:
+            Result[T, E]: ``Ok`` if the function is successful, otherwise ``Err``.
+
+        Examples:
+
+            Lets say we have a function that parses a string to an integer. If the string is not a
+            valid integer, we want to return an error instead of raising a ``ValueError``::
+
+                def parse_int(s: str) -> int:
+                    return int(s)
+
+                Result.from_fn(lambda: parse_int("42"))
+                Ok(42)
+
+                Result.from_fn(lambda: parse_int("foo"))
+                Err(ValueError: invalid literal for int() with base 10: 'foo')
+        """
+        try:
+            return Ok(fn())
+        except error_type as e:
+            return Err(e)
 
     @abstractmethod
     def __eq__(self, other):
@@ -116,8 +151,8 @@ class Result(ABC, Generic[T, E]):
             f (Callable[[T], bool]): The predicate to match against.
 
         Returns:
-            bool: ``True`` if the result is ``Ok`` and the value inside of it matches the predicate, otherwise
-            ``False``.
+            bool: ``True`` if the result is ``Ok`` and the value inside of it matches the predicate,
+            otherwise ``False``.
 
         Examples::
 
@@ -157,8 +192,8 @@ class Result(ABC, Generic[T, E]):
             f (Callable[[E], bool]): The predicate to match against.
 
         Returns:
-            bool: ``True`` if the result is ``Err`` and the value inside of it matches the predicate, otherwise
-            ``False``.
+            bool: ``True`` if the result is ``Err`` and the value inside of it matches the
+            predicate, otherwise ``False``.
 
         Examples::
 
@@ -210,8 +245,8 @@ class Result(ABC, Generic[T, E]):
 
     @abstractmethod
     def map(self, op: Callable[[T], U]) -> Result[U, E]:
-        """Maps a ``Result[T, E]`` to ``Result[U, E]`` by applying a function to a contained ``Ok`` value,
-        leaving an ``Err`` value untouched.
+        """Maps a ``Result[T, E]`` to ``Result[U, E]`` by applying a function to a contained ``Ok``
+        value, leaving an ``Err`` value untouched.
 
         This function can be used to compose the results of two functions.
 
@@ -233,14 +268,16 @@ class Result(ABC, Generic[T, E]):
 
     @abstractmethod
     def map_or(self, default: U, f: Callable[[T], U]) -> U:
-        """Returns the provided default (if ``Err``), or applies a function to the contained value (if ``Ok``).
+        """Returns the provided default (if ``Err``), or applies a function to the contained value
+        (if ``Ok``).
 
-        Arguments passed to ``map_or`` are eagerly evaluated; if you are passing the result of a function call,
-        it is recommended to use ``map_or_else``, which is lazily evaluated.
+        Arguments passed to ``map_or`` are eagerly evaluated; if you are passing the result of a
+        function call, it is recommended to use ``map_or_else``, which is lazily evaluated.
 
         Args:
             default (U): The value to return if the result is ``Err``.
-            f (Callable[[T], U]): The function to apply to the contained value if the result is ``Ok``.
+            f (Callable[[T], U]): The function to apply to the contained value if the result is
+                ``Ok``.
 
         Returns:
             U: The result of the function if the result is ``Ok``, otherwise the default value.
@@ -257,14 +294,16 @@ class Result(ABC, Generic[T, E]):
 
     @abstractmethod
     def map_or_else(self, default: Callable[[E], U], f: Callable[[T], U]) -> U:
-        """Maps a ``Result[T, E]`` to ``U`` by applying fallback function ``default`` to a contained ``Err`` value,
-        or function ``f`` to a contained ``Ok`` value.
+        """Maps a ``Result[T, E]`` to ``U`` by applying fallback function ``default`` to a contained
+        ``Err`` value, or function ``f`` to a contained ``Ok`` value.
 
         This function can be used to unpack a successful result while handling an error.
 
         Args:
-            default (Callable[[E], U]): The function to apply to the contained value if the result is ``Err``.
-            f (Callable[[T], U]): The function to apply to the contained value if the result is ``Ok``.
+            default (Callable[[E], U]): The function to apply to the contained value if the result
+                is ``Err``.
+            f (Callable[[T], U]): The function to apply to the contained value if the result is
+                ``Ok``.
 
         Returns:
             U: The result of the function if the result is ``Ok``, otherwise the default value.
@@ -281,8 +320,8 @@ class Result(ABC, Generic[T, E]):
 
     @abstractmethod
     def map_err(self, op: Callable[[E], F]) -> Result[T, F]:
-        """Maps a ``Result[T, E]`` to ``Result[T, F]`` by applying a function to a contained ``Err`` value,
-        leaving an ``Ok`` value untouched.
+        """Maps a ``Result[T, E]`` to ``Result[T, F]`` by applying a function to a contained ``Err``
+        value, leaving an ``Ok`` value untouched.
 
         This function can be used to pass through a successful result while handling an error.
 
@@ -348,8 +387,9 @@ class Result(ABC, Generic[T, E]):
     def expect(self, msg: str) -> T:
         """Returns the contained ``Ok`` value..
 
-        Because this function may panic, its use is generally discouraged. Instead, prefer to use pattern matching and
-        handle the ``Err`` case explicitly, or call ``unwrap_or``, ``unwrap_or_else``, or ``unwrap_or_default``.
+        Because this function may panic, its use is generally discouraged. Instead, prefer to use
+        pattern matching and handle the ``Err`` case explicitly, or call ``unwrap_or``,
+        ``unwrap_or_else``, or ``unwrap_or_default``.
 
         Args:
             msg (str): The message to display in case of a panic.
@@ -374,8 +414,9 @@ class Result(ABC, Generic[T, E]):
     def unwrap(self) -> T:
         """Returns the contained ``Ok`` value.
 
-        Because this function may panic, its use is generally discouraged. Instead, prefer to use pattern matching and
-        handle the ``Err`` case explicitly, or call ``unwrap_or``, ``unwrap_or_else``, or ``unwrap_or_default``.
+        Because this function may panic, its use is generally discouraged. Instead, prefer to use
+        pattern matching and handle the ``Err`` case explicitly, or call ``unwrap_or``,
+        ``unwrap_or_else``, or ``unwrap_or_default``.
 
         Returns:
             T: The contained value if the result is ``Ok``.
@@ -394,11 +435,12 @@ class Result(ABC, Generic[T, E]):
         raise NotImplementedError
 
     @abstractmethod
-    def unwrap_or_default(self, t: Type[T]) -> T:
-        """Returns the contained ``Ok`` value or a default. ``t`` has to be a type that implements the ``Default``
-        trait.
+    def unwrap_or_default(self, t: type[T]) -> T:
+        """Returns the contained ``Ok`` value or a default. ``t`` has to be a type that implements
+        the ``Default`` trait.
 
-        If ``Ok``, returns the contained value, otherwise if ``Err``, returns the default value for that type.
+        If ``Ok``, returns the contained value, otherwise if ``Err``, returns the default value for
+        that type.
 
         Args:
             t (Type[T]): The type that implements the ``Default`` trait.
@@ -481,8 +523,8 @@ class Result(ABC, Generic[T, E]):
     def and_(self, res: Result[U, E]) -> Result[U, E]:
         """Returns ``res`` if the result is ``Ok``, otherwise returns the ``Err`` value of ``self``.
 
-        Arguments passed to ``and_`` are eagerly evaluated; if you are passing the result of a function call,
-        it is recommended to use ``and_then``, which is lazily evaluated.
+        Arguments passed to ``and_`` are eagerly evaluated; if you are passing the result of a
+        function call, it is recommended to use ``and_then``, which is lazily evaluated.
 
         Args:
             res (Result[U, E]): The result to return if the result is ``Ok``.
@@ -516,11 +558,12 @@ class Result(ABC, Generic[T, E]):
             op (Callable[[T], Result[U, E]]): The function to call if the result is ``Ok``.
 
         Returns:
-            Result[U, E]: The result of the function if the result is ``Ok``, otherwise the ``Err`` value of ``self``.
+            Result[U, E]: The result of the function if the result is ``Ok``, otherwise the ``Err``
+            value of ``self``.
 
         Examples:
-            Lets assume we have a function that squares and then stringifies an ``float``, that can fail if the
-            ``float`` is greater than ``1_000_000``::
+            Lets assume we have a function that squares and then stringifies an ``float``, that can
+            fail if the ``float`` is greater than ``1_000_000``::
 
                 import math
 
@@ -544,8 +587,8 @@ class Result(ABC, Generic[T, E]):
     def or_(self, res: Result[T, F]) -> Result[T, F]:
         """Returns ``res`` if the result is ``Err``, otherwise returns the ``Ok`` value of ``self``.
 
-        Arguments passed to ``or_`` are eagerly evaluated; if you are passing the result of a function call, it is
-        recommended to use ``or_else``, which is lazily evaluated.
+        Arguments passed to ``or_`` are eagerly evaluated; if you are passing the result of a
+        function call, it is recommended to use ``or_else``, which is lazily evaluated.
 
         Args:
             res (Result[T, F]): The result to return if the result is ``Err``.
@@ -579,11 +622,13 @@ class Result(ABC, Generic[T, E]):
             op (Callable[[E], Result[T, F]]): The function to call if the result is ``Err``.
 
         Returns:
-            Result[T, F]: The result of the function if the result is ``Err``, otherwise the ``Ok`` value of ``self``.
+            Result[T, F]: The result of the function if the result is ``Err``, otherwise the ``Ok``
+            value of ``self``.
 
         Examples:
 
-            Lets assume we have function that squares an int and a function that returns the int as an error::
+            Lets assume we have function that squares an int and a function that returns the int as
+            an error::
 
                 def sq(x: int) -> Result[int, int]:
                     return Ok(x * x)
@@ -611,8 +656,8 @@ class Result(ABC, Generic[T, E]):
     def unwrap_or(self, default: T) -> T:
         """Returns the contained ``Ok`` value or a provided default.
 
-        Arguments passed to ``unwrap_or`` are eagerly evaluated; if you are passing the result of a function call,
-        it is recommended to use ``unwrap_or_else``, which is lazily evaluated.
+        Arguments passed to ``unwrap_or`` are eagerly evaluated; if you are passing the result of a
+        function call, it is recommended to use ``unwrap_or_else``, which is lazily evaluated.
 
         Args:
             default (T): The value to return if the result is ``Err``.
@@ -692,10 +737,11 @@ class Result(ABC, Generic[T, E]):
 
     @abstractmethod
     def try_(self) -> T:
-        """Returns the contained ``Ok``, else raises the contained ``Err`` value as ``ResultException``. Should only
-        be used in combination with the ``@try_guard`` decorator.
+        """Returns the contained ``Ok``, else raises the contained ``Err`` value as
+        ``ResultException``. Should only be used in combination with the ``@try_guard`` decorator.
 
-        Works in conjunction with the ``@try_guard`` decorator similar to the ``?`` operator in Rust.
+        Works in conjunction with the ``@try_guard`` decorator similar to the ``?`` operator in
+        Rust.
 
         Returns:
             T: The contained value if the result is ``Ok``.
@@ -705,9 +751,10 @@ class Result(ABC, Generic[T, E]):
 
         Examples:
 
-            Lets say we have a function that parses a string to an integer. If the string is not a valid integer,
-            we want to return an error instead of raising a ``ValueError``. Now we want to parse an array of integers
-            and return an error if one of the integers is invalid::
+            Lets say we have a function that parses a string to an integer. If the string is not a
+            valid integer, we want to return an error instead of raising a ``ValueError``. Now we
+            want to parse an array of integers and return an error if one of the integers is
+            invalid::
 
                 @catch(ValueError)
                 def parse_int(s: str) -> Result[int, str]:
@@ -729,7 +776,6 @@ class Result(ABC, Generic[T, E]):
 
 
 class Ok(Result, Generic[T, E]):
-
     inner: T
 
     def __init__(self, inner: T = None):
@@ -787,7 +833,7 @@ class Ok(Result, Generic[T, E]):
     def unwrap(self) -> T:
         return self.inner
 
-    def unwrap_or_default(self, t: Type[T]) -> T:
+    def unwrap_or_default(self, t: type[T]) -> T:
         return self.inner
 
     def expect_err(self, msg: str) -> E:
@@ -825,7 +871,6 @@ class Ok(Result, Generic[T, E]):
 
 
 class Err(Result, Generic[T, E]):
-
     inner: E
 
     def __init__(self, inner: E):
@@ -883,7 +928,7 @@ class Err(Result, Generic[T, E]):
     def unwrap(self) -> T:
         panic("Called unwrap on Err")
 
-    def unwrap_or_default(self, t: Type[T]) -> T:
+    def unwrap_or_default(self, t: type[T]) -> T:
         if issubclass(t, Default):
             return t.default()
         panic("Called unwrap_or_default on Err without Default bound")
@@ -929,22 +974,26 @@ class Err(Result, Generic[T, E]):
 Fn = Callable[..., Result[T, E]]
 
 
-def catch(*exceptions: Type[BaseException], map_err: Callable[[BaseException], E] = stringify) -> Callable[[Fn], Fn]:
-    """Catch specified exceptions and return them as ``Err``. If no exceptions are specified, catch all exceptions. Use
-    the ``map_err`` function to map the caught exception to the error type of the ``Result``.
+def catch(
+    *exceptions: type[BaseException], map_err: Callable[[BaseException], E] = stringify
+) -> Callable[[Fn], Fn]:
+    """Catch specified exceptions and return them as ``Err``. If no exceptions are specified, catch
+    all exceptions. Use the ``map_err`` function to map the caught exception to the error type of
+    the ``Result``.
 
     Args:
         *exceptions (Type[BaseException]): The exceptions to catch.
-        map_err (Callable[[BaseException], E]): The function to map the caught exception to the error type of the
-            ``Result``. Defaults to ``rusttypes.misc.stringify``.
+        map_err (Callable[[BaseException], E]): The function to map the caught exception to the
+            error type of the ``Result``. Defaults to ``rusttypes.misc.stringify``.
 
     Returns:
-        Callable[[Callable[..., Result[T, E]]], Callable[..., Result[T, E]]]: Decorator that catches the specified exceptions and returns them as ``Err``.
+        Callable[[Callable[..., Result[T, E]]], Callable[..., Result[T, E]]]: Decorator that catches
+            the specified exceptions and returns them as ``Err``.
 
     Examples:
 
-        Lets say we have a function that parses a string to an integer. If the string is not a valid integer, we want to
-        return an error instead of raising a ``ValueError``::
+        Lets say we have a function that parses a string to an integer. If the string is not a valid
+        integer, we want to return an error instead of raising a ``ValueError``::
 
             @catch(ValueError)
             def parse_int(s: str) -> Result[int, str]:
@@ -963,7 +1012,6 @@ def catch(*exceptions: Type[BaseException], map_err: Callable[[BaseException], E
         exceptions = (BaseException,)
 
     def decorator(fn: Fn) -> Fn:
-
         @wraps(fn)
         def wrapper(*args: Any, **kwargs: Any) -> Result[T, E]:
             try:
@@ -977,8 +1025,8 @@ def catch(*exceptions: Type[BaseException], map_err: Callable[[BaseException], E
 
 
 def try_guard(fn: Fn) -> Fn:
-    """Bubble up ``Err`` that are thrown inside the function. If an ``Err`` is thrown, it is returned as is. This
-    is useful in combination with the ``Result::try_`` method.
+    """Bubble up ``Err`` that are thrown inside the function. If an ``Err`` is thrown, it is
+    returned as is. This is useful in combination with the ``Result::try_`` method.
 
     Works in conjunction with the ``Result::try_`` function similar to the ``?`` operator in Rust.
 
@@ -990,25 +1038,25 @@ def try_guard(fn: Fn) -> Fn:
 
     Examples:
 
-            Lets say we have a function that parses a string to an integer. If the string is not a valid integer, we want to
-            return an error instead of raising a ``ValueError``. Now we want to parse an array of integers and return an
-            error if one of the integers is invalid::
+        Lets say we have a function that parses a string to an integer. If the string is not a valid
+        integer, we want to return an error instead of raising a ``ValueError``. Now we want to
+        parse an array of integers and return an error if one of the integers is invalid::
 
-                @catch(ValueError)
-                def parse_int(s: str) -> Result[int, str]:
-                    return Ok(int(s))
+            @catch(ValueError)
+            def parse_int(s: str) -> Result[int, str]:
+                return Ok(int(s))
 
-                @try_guard
-                def parse_int_array(arr: str) -> Result[List[int], str]:
-                    return Ok([parse_int(s).try_() for s in arr.split()])
+            @try_guard
+            def parse_int_array(arr: str) -> Result[List[int], str]:
+                return Ok([parse_int(s).try_() for s in arr.split()])
 
-            You can now use the function and handle the error case::
+        You can now use the function and handle the error case::
 
-                >>> parse_int_array("42 21 1337")
-                Ok([42, 21, 1337])
+            >>> parse_int_array("42 21 1337")
+            Ok([42, 21, 1337])
 
-                >>> parse_int_array("42 foo 1337")
-                Err("invalid literal for int() with base 10: 'foo'")
+            >>> parse_int_array("42 foo 1337")
+            Err("invalid literal for int() with base 10: 'foo'")
 
     """
 

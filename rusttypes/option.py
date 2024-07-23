@@ -29,7 +29,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Any, Callable, Generic, List, Optional, Tuple, Type, TypeVar, final, Final
+from typing import Any, Callable, Generic, Optional, TypeVar, final, Final
 
 from . import result as r
 from .traits import Default
@@ -51,7 +51,8 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def __eq__(self, other: Any) -> bool:
-        """Compares an ``Option`` with any other object and returns ``True`` if they are equal, ``False`` otherwise.
+        """Compares an ``Option`` with any other object and returns ``True`` if they are equal,
+        ``False`` otherwise.
 
         Args:
             other (Any): The object to compare with.
@@ -145,7 +146,8 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def is_some(self) -> bool:
-        """Returns ``true`` if the option is a ``Some`` value. Equal in function to boolean cast ``bool(...)``.
+        """Returns ``true`` if the option is a ``Some`` value. Equal in function to boolean cast
+        ``bool(...)``.
 
         Returns:
             bool: ``True`` if the option is a ``Some`` value, ``False`` otherwise.
@@ -168,7 +170,8 @@ class Option(ABC, Generic[T]):
             f (Callable[[T], bool]): The predicate to match the value against.
 
         Returns:
-            bool: ``True`` if the option is a ``Some`` and the value matches the predicate, ``False`` otherwise.
+            bool: ``True`` if the option is a ``Some`` and the value matches the predicate,
+                ``False`` otherwise.
 
         Examples::
 
@@ -185,7 +188,8 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def is_nil(self) -> bool:
-        """Returns ``true`` if the option is a ``Nil`` value. Equal in function to boolean cast ``not bool(...)``.
+        """Returns ``true`` if the option is a ``Nil`` value. Equal in function to boolean cast
+        ``not bool(...)``.
 
         Returns:
             bool: ``True`` if the option is a ``Nil`` value, ``False`` otherwise.
@@ -227,8 +231,9 @@ class Option(ABC, Generic[T]):
     def unwrap(self) -> T:
         """Returns the contained ``Some`` value.
 
-        Because this function may throw a RuntimeError, its use is generally discouraged. Instead, prefer to
-        handle the ``Nil`` case explicitly, or call ``unwrap_or``, ``unwrap_or_else``, or ``unwrap_or_default``.
+        Because this function may throw a RuntimeError, its use is generally discouraged. Instead,
+        prefer to handle the ``Nil`` case explicitly, or call ``unwrap_or``, ``unwrap_or_else``, or
+        ``unwrap_or_default``.
 
         Returns:
             T: The contained value.
@@ -250,8 +255,8 @@ class Option(ABC, Generic[T]):
     def unwrap_or(self, default: T) -> T:
         """Returns the contained ``Some`` value or a provided default.
 
-        Arguments passed to ``unwrap_or`` are eagerly evaluated; if you are passing the result of a function call,
-        it is recommended to use ``unwrap_or_else``, which is lazily evaluated.
+        Arguments passed to ``unwrap_or`` are eagerly evaluated; if you are passing the result of a
+        function call, it is recommended to use ``unwrap_or_else``, which is lazily evaluated.
 
         Returns:
             T: The contained value or the default value.
@@ -287,11 +292,11 @@ class Option(ABC, Generic[T]):
         raise NotImplementedError
 
     @abstractmethod
-    def unwrap_or_default(self, t: Type[T]) -> T:
+    def unwrap_or_default(self, t: type[T]) -> T:
         """Returns the contained Some value or a default.
 
-        Consumes the self argument then, if Some, returns the contained value, otherwise if ``Nil``, returns the
-        default value for that type ``t``, which must implement the ``Default`` trait.
+        Consumes the self argument then, if Some, returns the contained value, otherwise if ``Nil``,
+        returns the default value for that type ``t``, which must implement the ``Default`` trait.
 
         Args:
             t (Type[T]): The type to get the default value from.
@@ -350,8 +355,8 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def map(self, f: Callable[[T], U]) -> Option[U]:
-        """Maps an ``Option[T]`` to ``Option[U]`` by applying a function to a contained value (if ``Some``) or returns
-        ``Nil`` (if ``Nil``).
+        """Maps an ``Option[T]`` to ``Option[U]`` by applying a function to a contained value (if
+        ``Some``) or returns ``Nil`` (if ``Nil``).
 
         Args:
             f (Callable[[T], U]): The function to apply to the contained value.
@@ -392,11 +397,11 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def map_or(self, default: U, f: Callable[[T], U]) -> U:
-        """Returns the provided default result (if ``Nil``), or applies a function to the contained value
-        (if ``Some``).
+        """Returns the provided default result (if ``Nil``), or applies a function to the contained
+        value (if ``Some``).
 
-        Arguments passed to ``map_or`` are eagerly evaluated; if you are passing the result of a function call, it is
-        recommended to use ``map_or_else``, which is lazily evaluated.
+        Arguments passed to ``map_or`` are eagerly evaluated; if you are passing the result of a
+        function call, it is recommended to use ``map_or_else``, which is lazily evaluated.
 
         Args:
             default (U): The default value to return if the ``Option`` is ``Nil``.
@@ -417,8 +422,8 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def map_or_else(self, default: Callable[[], U], f: Callable[[T], U]) -> U:
-        """Computes a default function result (if ``Nil``), or applies a different function to the contained value
-        (if ``Some``).
+        """Computes a default function result (if ``Nil``), or applies a different function to the
+        contained value (if ``Some``).
 
         Args:
             default (Callable[[], U]): The closure to compute the default value.
@@ -439,11 +444,11 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def ok_or(self, err: E) -> r.Result[T, E]:
-        """Transforms the ``Option[T]`` into a ``Result[T, E]``, mapping ``Some(v)`` to ``Ok(v)`` and ``Nil`` to
-        ``Err(err)``.
+        """Transforms the ``Option[T]`` into a ``Result[T, E]``, mapping ``Some(v)`` to ``Ok(v)``
+        and ``Nil`` to ``Err(err)``.
 
-        Arguments passed to ``ok_or`` are eagerly evaluated; if you are passing the result of a function call, it
-        is recommended to use ``ok_or_else``, which is lazily evaluated.
+        Arguments passed to ``ok_or`` are eagerly evaluated; if you are passing the result of a
+        function call, it is recommended to use ``ok_or_else``, which is lazily evaluated.
 
         Args:
             err (E): The error value to use if the ``Option`` is ``Nil``.
@@ -463,11 +468,12 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def ok_or_else(self, f: Callable[[], E]) -> r.Result[T, E]:
-        """Transforms the ``Option[T]`` into a ``Result[T, E]``, mapping ``Some(v)`` to ``Ok(v)`` and ``Nil`` to
-        ``Err(f())``.
+        """Transforms the ``Option[T]`` into a ``Result[T, E]``, mapping ``Some(v)`` to ``Ok(v)``
+        and ``Nil`` to ``Err(f())``.
 
         Args:
-            f (Callable[[], E]): The closure to compute the error value if the ``Option`` is ``Nil``.
+            f (Callable[[], E]): The closure to compute the error value if the ``Option`` is
+                ``Nil``.
 
         Returns:
             Result[T, E]: The transformed ``Result``.
@@ -486,8 +492,8 @@ class Option(ABC, Generic[T]):
     def and_(self, optb: Option[U]) -> Option[U]:
         """Returns ``Nil`` if the option is ``Nil``, otherwise returns ``optb``.
 
-        Arguments passed to ``and_`` are eagerly evaluated; if you are passing the result of a function call, it is
-        recommended to use ``and_then``, which is lazily evaluated.
+        Arguments passed to ``and_`` are eagerly evaluated; if you are passing the result of a
+        function call, it is recommended to use ``and_then``, which is lazily evaluated.
 
         Args:
             optb (Option[U]): The other option to return if the current option is ``Some``.
@@ -510,13 +516,14 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def and_then(self, f: Callable[[T], Option[U]]) -> Option[U]:
-        """Returns ``Nil`` if the option is ``Nil``, otherwise calls ``f`` with the wrapped value and returns the
-        result.
+        """Returns ``Nil`` if the option is ``Nil``, otherwise calls ``f`` with the wrapped value
+        and returns the result.
 
         Some languages call this operation flatmap.
 
         Args:
-            f (Callable[[T], Option[U]]): The function to call with the value if the option is ``Some``.
+            f (Callable[[T], Option[U]]): The function to call with the value if the option is
+                ``Some``.
 
         Returns:
             Option[U]: The result of the function call or ``Nil``.
@@ -546,13 +553,14 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def filter(self, predicate: Callable[[T], bool]) -> Option[T]:
-        """Returns ``Nil`` if the option is ``Nil``, otherwise calls ``predicate`` with the wrapped value and returns:
+        """Returns ``Nil`` if the option is ``Nil``, otherwise calls ``predicate`` with the wrapped
+        value and returns:
 
         - ``Some(val)`` if ``predicate`` returns ``True`` (where ``val`` is the wrapped value), and
         - ``Nil`` if ``predicate`` returns ``False``.
 
-        You can imagine the ``Option[T]`` being an iterator over one or zero elements. ``filter()`` lets you decide
-        which elements to keep.
+        You can imagine the ``Option[T]`` being an iterator over one or zero elements. ``filter()``
+        lets you decide which elements to keep.
 
         Args:
             predicate (Callable[[T], bool]): The ``predicate`` to match the value against.
@@ -583,8 +591,8 @@ class Option(ABC, Generic[T]):
     def or_(self, optb: Option[T]) -> Option[T]:
         """Returns the option if it contains a value, otherwise returns ``optb``.
 
-        Arguments passed to ``or_`` are eagerly evaluated; if you are passing the result of a function call, it is
-        recommended to use ``or_else``, which is lazily evaluated.
+        Arguments passed to ``or_`` are eagerly evaluated; if you are passing the result of a
+        function call, it is recommended to use ``or_else``, which is lazily evaluated.
 
         Args:
             optb (Option[T]): The other option to return if the current option is ``Nil``.
@@ -643,7 +651,8 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def xor(self, optb: Option[T]) -> Option[T]:
-        """Returns ``Some`` if exactly one of ``self``, ``optb`` is ``Some``, otherwise returns ``Nil``.
+        """Returns ``Some`` if exactly one of ``self``, ``optb`` is ``Some``, otherwise returns
+        ``Nil``.
 
         Args:
             optb (Option[T]): The other option to compare with.
@@ -669,12 +678,14 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def insert(self, value: T) -> Some[T]:
-        """Inserts ``value`` into the option, then returns the (newly created) value, for the function to work properly
-        override the varibale from which this function is called with the return value if no function chaining is used.
+        """Inserts ``value`` into the option, then returns the (newly created) value, for the
+        function to work properly override the varibale from which this function is called with the
+        return value if no function chaining is used.
 
         If the option already contains a value, the old value is dropped.
 
-        See also ``Option::get_or_insert``, which doesn't update the value if the option already contains ``Some``.
+        See also ``Option::get_or_insert``, which doesn't update the value if the option already
+        contains ``Some``.
 
         Args:
             value (T): The value to insert.
@@ -693,11 +704,12 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def get_or_insert(self, value: T) -> Some[T]:
-        """Inserts ``value`` into the option if it is ``Nil``, then returns the (newly created) value, for the function
-        to work properly override the varibale from which this function is called with the return value if no function
-        chaining is used.
+        """Inserts ``value`` into the option if it is ``Nil``, then returns the (newly created)
+        value, for the function to work properly override the varibale from which this function is
+        called with the return value if no function chaining is used.
 
-        See also ``Option::insert``, which updates the value even if the option already contains ``Some``.
+        See also ``Option::insert``, which updates the value even if the option already contains
+        ``Some``.
 
         Args:
             value (T): The value to insert.
@@ -720,10 +732,11 @@ class Option(ABC, Generic[T]):
         raise NotImplementedError
 
     @abstractmethod
-    def get_or_insert_default(self, t: Type[T]) -> Some[T]:
-        """Inserts the default value into the option if it is ``Nil``, then returns the (newly created) value, for the
-        function to work properly override the varibale from which this function is called with the return value if
-        no function chaining is used. The default value is retrieved from the ``Default`` trait of the type ``T``.
+    def get_or_insert_default(self, t: type[T]) -> Some[T]:
+        """Inserts the default value into the option if it is ``Nil``, then returns the (newly
+        created) value, for the function to work properly override the varibale from which this
+        function is called with the return value if no function chaining is used. The default value
+        is retrieved from the ``Default`` trait of the type ``T``.
 
         Args:
             t (Type[T]): The type to get the default value from.
@@ -767,9 +780,9 @@ class Option(ABC, Generic[T]):
 
     @abstractmethod
     def get_or_insert_with(self, f: Callable[[], T]) -> Some[T]:
-        """Inserts a value computed from ``f`` into the option if it is ``Nil``, then returns the (newly created) value,
-        for the function to work properly override the varibale from which this function is called with the return
-        value if no function chaining is used.
+        """Inserts a value computed from ``f`` into the option if it is ``Nil``, then returns the
+        (newly created) value, for the function to work properly override the varibale from which
+        this function is called with the return value if no function chaining is used.
 
         Args:
             f (Callable[[], T]): The closure to compute the value.
@@ -792,9 +805,10 @@ class Option(ABC, Generic[T]):
         raise NotImplementedError
 
     @abstractmethod
-    def take(self) -> Tuple[NilType, Option[T]]:
-        """Takes the value out of the option, leaving a None in its place. The first value in the tuple is ``Nil``
-        and should be written to the variable from which this function is called if no function chaining is used.
+    def take(self) -> tuple[NilType, Option[T]]:
+        """Takes the value out of the option, leaving a None in its place. The first value in the
+        tuple is ``Nil`` and should be written to the variable from which this function is called if
+        no function chaining is used.
 
         Returns:
             Tuple[NilType, Option[T]]: A tuple containing ``Nil`` and the value.
@@ -811,10 +825,11 @@ class Option(ABC, Generic[T]):
         raise NotImplementedError
 
     @abstractmethod
-    def replace(self, value: T) -> Tuple[Option[T], Option[T]]:
-        """Replaces the actual value in the option by the value given in parameter, returning the old value if
-        present, leaving a ``Some`` in its place. The first value in the tuple is the new value and should be written
-        to the variable from which this function is called if no function chaining is used.
+    def replace(self, value: T) -> tuple[Option[T], Option[T]]:
+        """Replaces the actual value in the option by the value given in parameter, returning the
+        old value if present, leaving a ``Some`` in its place. The first value in the tuple is the
+        new value and should be written to the variable from which this function is called if no
+        function chaining is used.
 
         Args:
             value (T): The value to insert.
@@ -834,11 +849,11 @@ class Option(ABC, Generic[T]):
         raise NotImplementedError
 
     @abstractmethod
-    def zip(self, other: Option[U]) -> Option[Tuple[T, U]]:
+    def zip(self, other: Option[U]) -> Option[tuple[T, U]]:
         """Zips ``self`` with another ``Option``.
 
-        If ``self`` is ``Some(s)`` and ``other`` is ``Some(o)``, this method returns ``Some((s, o))``. Otherwise,
-        ``Nil`` is returned.
+        If ``self`` is ``Some(s)`` and ``other`` is ``Some(o)``, this method returns
+        ``Some((s, o))``. Otherwise, ``Nil`` is returned.
 
         Args:
             other (Option[U]): The other option to zip with.
@@ -860,11 +875,11 @@ class Option(ABC, Generic[T]):
         raise NotImplementedError
 
     @abstractmethod
-    def zip_with(self, other: Option[U], f: Callable[[ T, U ], R]) -> Option[R]:
+    def zip_with(self, other: Option[U], f: Callable[[T, U], R]) -> Option[R]:
         """Zips ``self`` and another ``Option`` with function ``f``.
 
-        If ``self`` is ``Some(s)`` and ``other`` is ``Some(o)``, this method returns ``Some((s, o))``. Otherwise,
-        ``Nil`` is returned.
+        If ``self`` is ``Some(s)`` and ``other`` is ``Some(o)``, this method returns
+        ``Some((s, o))``. Otherwise, ``Nil`` is returned.
 
         Args:
             other (Option[U]): The other option to zip with.
@@ -897,10 +912,11 @@ class Option(ABC, Generic[T]):
         raise NotImplementedError
 
     @abstractmethod
-    def unzip(self) -> Tuple[Option[Any], Option[Any]]:
+    def unzip(self) -> tuple[Option[Any], Option[Any]]:
         """Unzips an option containing a tuple of two options.
 
-        If self is ``Some((a, b))`` this method returns ``(Some(a), Some(b))``. Otherwise, ``(Nil, Nil)`` is returned.
+        If self is ``Some((a, b))`` this method returns ``(Some(a), Some(b))``. Otherwise,
+        ``(Nil, Nil)`` is returned.
 
         Returns:
             Tuple[Option[Any], Option[Any]]: The unzipped options.
@@ -925,8 +941,8 @@ class Option(ABC, Generic[T]):
     def transpose(self) -> r.Result[Option[T], Any]:
         """Transposes an ``Option`` of a ``Result`` into a ``Result`` of an ``Option``.
 
-        ``Nil`` will be mapped to ``Ok(Nil)``. ``Some(Ok(_))`` and ``Some(Err(_))`` will be mapped to ``Ok(Some(_))``
-        and ``Err(_)``.
+        ``Nil`` will be mapped to ``Ok(Nil)``. ``Some(Ok(_))`` and ``Some(Err(_))`` will be mapped
+        to ``Ok(Some(_))`` and ``Err(_)``.
 
         Returns:
             Result[Option[T], Any]: The transposed result.
@@ -972,7 +988,6 @@ class Option(ABC, Generic[T]):
 
 
 class Some(Option, Generic[T]):
-
     inner: T
 
     def __init__(self, inner: T) -> None:
@@ -1014,7 +1029,7 @@ class Some(Option, Generic[T]):
     def unwrap_or_else(self, f: Callable[[], T]) -> T:
         return self.inner
 
-    def unwrap_or_default(self, t: Type[T]) -> T:
+    def unwrap_or_default(self, t: type[T]) -> T:
         return self.inner
 
     def unwrap_unchecked(self) -> T:
@@ -1064,28 +1079,28 @@ class Some(Option, Generic[T]):
     def get_or_insert(self, value: T) -> Some[T]:
         return self
 
-    def get_or_insert_default(self, t: Type[T]) -> Some[T]:
+    def get_or_insert_default(self, t: type[T]) -> Some[T]:
         return self
 
     def get_or_insert_with(self, f: Callable[[], T]) -> Some[T]:
         return self
 
-    def take(self) -> Tuple[NilType, Option[T]]:
+    def take(self) -> tuple[NilType, Option[T]]:
         return Nil, Some(self.inner)
 
-    def replace(self, value: T) -> Tuple[Option[T], Option[T]]:
+    def replace(self, value: T) -> tuple[Option[T], Option[T]]:
         ret = self.inner
         self.inner = value
         return self, Some(ret)
 
-    def zip(self, other: Option[U]) -> Option[Tuple[T, U]]:
+    def zip(self, other: Option[U]) -> Option[tuple[T, U]]:
         return other.map(lambda v: (self.inner, v))
 
-    def zip_with(self, other: Option[U], f: Callable[[ T, U ], R]) -> Option[R]:
+    def zip_with(self, other: Option[U], f: Callable[[T, U], R]) -> Option[R]:
         return other.map(lambda v: f(self.inner, v))
 
-    def unzip(self) -> Tuple[Option[Any], Option[Any]]:
-        if not isinstance(self.inner, (Tuple, List)):
+    def unzip(self) -> tuple[Option[Any], Option[Any]]:
+        if not isinstance(self.inner, tuple | list):
             raise ValueError("Can not unzip non-tuple type")
         if len(self.inner) != 2:
             raise ValueError("Can not unzip tuple with more/less than 2 elements")
@@ -1110,7 +1125,6 @@ class Some(Option, Generic[T]):
 
 @final
 class NilType(Option, Generic[T]):
-
     def __eq__(self, other: Any) -> bool:
         return isinstance(other, NilType) or other is None
 
@@ -1147,7 +1161,7 @@ class NilType(Option, Generic[T]):
     def unwrap_or_else(self, f: Callable[[], T]) -> T:
         return f()
 
-    def unwrap_or_default(self, t: Type[T]) -> T:
+    def unwrap_or_default(self, t: type[T]) -> T:
         if not issubclass(t, Default):
             raise ValueError("Can not unwrap_or_default on non-Default type")
 
@@ -1198,7 +1212,7 @@ class NilType(Option, Generic[T]):
     def get_or_insert(self, value: T) -> Some[T]:
         return Some(value)
 
-    def get_or_insert_default(self, t: Type[T]) -> Some[T]:
+    def get_or_insert_default(self, t: type[T]) -> Some[T]:
         if not issubclass(t, Default):
             raise ValueError("Can not get_or_insert_default on non-Default type")
 
@@ -1207,19 +1221,19 @@ class NilType(Option, Generic[T]):
     def get_or_insert_with(self, f: Callable[[], T]) -> Some[T]:
         return Some(f())
 
-    def take(self) -> Tuple[NilType, Option[T]]:
+    def take(self) -> tuple[NilType, Option[T]]:
         return Nil, Nil
 
-    def replace(self, value: T) -> Tuple[Option[T], Option[T]]:
+    def replace(self, value: T) -> tuple[Option[T], Option[T]]:
         return Some(value), Nil
 
-    def zip(self, other: Option[U]) -> Option[Tuple[T, U]]:
+    def zip(self, other: Option[U]) -> Option[tuple[T, U]]:
         return Nil
 
-    def zip_with(self, other: Option[U], f: Callable[[ T, U ], R]) -> Option[R]:
+    def zip_with(self, other: Option[U], f: Callable[[T, U], R]) -> Option[R]:
         raise NotImplementedError
 
-    def unzip(self) -> Tuple[Option[Any], Option[Any]]:
+    def unzip(self) -> tuple[Option[Any], Option[Any]]:
         return (Nil, Nil)
 
     def transpose(self) -> r.Result[Option[T], Any]:

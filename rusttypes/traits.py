@@ -27,7 +27,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from abc import ABC, abstractmethod
-from typing import TypeVar, Type
+from typing import TypeVar
 
 T = TypeVar("T")
 
@@ -54,6 +54,6 @@ class Default(ABC):
 
     @classmethod
     @abstractmethod
-    def default(cls: Type[T]) -> T:
+    def default(cls: type[T]) -> T:
         """Protopype method for creating a default instance of a type."""
         raise NotImplementedError

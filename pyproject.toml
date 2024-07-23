@@ -66,19 +66,60 @@ disable = []
 fail-under = 9.0
 disable = "C,R,W1401"
 
-[tool.yapf]
-based_on_style = "google"
-column_limit = 120
-indent_width = 4
-dedent_closing_brackets = true
-coalesce_brackets = true
-blank_line_before_nested_class_or_def = true
-indent_dictionary_value = true
-spaces_around_dict_delimiters = true
-spaces_around_default_or_named_assign = true
-spaces_around_list_delimiters = true
-spaces_before_comment = 3
-split_all_top_level_comma_separated_values = false
-split_before_dict_set_generator = true
-split_before_dot = true
-split_complex_comprehension = true
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+line-length = 100
+indent-width = 4
+target-version = "py312"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = false
+docstring-code-line-length = "dynamic"
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+]
+ignore = ["UP007", "UP035"]
