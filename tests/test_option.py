@@ -29,27 +29,22 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from types import NoneType
-from typing import Type, TypeVar
 
-from rusttypes.option import Option, Nil, Some, to_option
+from rusttypes.option import Option, Nil, Some
 from rusttypes.result import Err, Ok
-from rusttypes.traits import Default
-
-T = TypeVar("T")
 
 
 @dataclass
-class Foo(Default):
+class Foo:
     x: int
 
-    @classmethod
-    def default(cls: Type[T]) -> T:
-        return cls(42)
+    @staticmethod
+    def default() -> Foo:
+        return Foo(42)
 
 
 def test_eq():
-    assert Nil == None
+    assert Nil == None  # noqa: E711
     assert Nil == Nil
     assert Nil is Nil
     assert Nil != Some(1)
@@ -82,10 +77,10 @@ def test_as_optional():
     assert Some(Nil).as_optional() is Nil
 
 
-def test_to_option():
-    assert to_option(None) is Nil
-    assert to_option(1) == Some(1)
-    assert to_option(Nil) == Some(Nil)
+def test_from_opt():
+    assert Option.from_opt(None) is Nil
+    assert Option.from_opt(1) == Some(1)
+    assert Option.from_opt(Nil) == Some(Nil)
 
 
 def test_is_some():
@@ -95,9 +90,9 @@ def test_is_some():
 
 
 def test_is_some_and():
-    assert Nil.is_some_and(lambda x: x > 1) == False
-    assert Some(2).is_some_and(lambda x: x > 1) == True
-    assert Some(0).is_some_and(lambda x: x == 1) == False
+    assert Nil.is_some_and(lambda x: x > 1) is False
+    assert Some(2).is_some_and(lambda x: x > 1) is True
+    assert Some(0).is_some_and(lambda x: x == 1) is False
 
 
 def test_is_nil():
@@ -111,7 +106,7 @@ def test_expect():
 
     try:
         Nil.expect("error")
-        assert False
+        raise AssertionError()
     except RuntimeError as e:
         assert str(e) == "error"
 
@@ -121,7 +116,7 @@ def test_unwrap():
 
     try:
         Nil.unwrap()
-        assert False
+        raise AssertionError()
     except RuntimeError as e:
         assert str(e) == "Called unwrap on a Nil value"
 
@@ -139,7 +134,6 @@ def test_unwrap_or_else():
 
 
 def test_unwrap_or_default():
-
     bar = Some(Foo(10))
     baz = Nil
 
@@ -152,7 +146,7 @@ def test_unwrap_unchecked():
 
     try:
         Nil.unwrap_unchecked()
-        assert False
+        raise AssertionError()
     except RuntimeError as e:
         assert str(e) == "Called unwrap_unchecked on a Nil value"
 
@@ -211,7 +205,6 @@ def test_and():
 
 
 def test_and_then():
-
     def sq_then_to_str(x: int) -> Option[str]:
         if x >= 1_000_000 or x <= -1_000_000:
             return Nil
@@ -223,7 +216,6 @@ def test_and_then():
 
 
 def test_filter():
-
     def is_even(x: int) -> bool:
         return x % 2 == 0
 
@@ -240,7 +232,6 @@ def test_or():
 
 
 def test_or_else():
-
     def nobody() -> Option[str]:
         return Nil
 
@@ -333,7 +324,6 @@ def test_zip():
 
 
 def test_zip_with():
-
     @dataclass
     class Foo:
         x: float
@@ -356,21 +346,21 @@ def test_unzip():
     x = Some(42)
     try:
         x.unzip()
-        assert False
+        raise AssertionError()
     except ValueError as e:
         assert str(e) == "Can not unzip non-tuple type"
 
     x = Some((42, "foo", "bar"))
     try:
         x.unzip()
-        assert False
+        raise AssertionError()
     except ValueError as e:
         assert str(e) == "Can not unzip tuple with more/less than 2 elements"
 
     x = Some((42,))
     try:
         x.unzip()
-        assert False
+        raise AssertionError()
     except ValueError as e:
         assert str(e) == "Can not unzip tuple with more/less than 2 elements"
 

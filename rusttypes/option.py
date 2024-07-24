@@ -32,7 +32,7 @@ from abc import ABC, abstractmethod
 from typing import Any, Callable, Generic, Optional, TypeVar, final, Final
 
 from . import result as r
-from .traits import Default
+from .misc import panic
 
 T = TypeVar("T")
 U = TypeVar("U")
@@ -48,6 +48,26 @@ class Option(ABC, Generic[T]):
     - ``Some(T)``: Some value of type ``T``.
     - ``Nil``: No value.
     """
+
+    @staticmethod
+    def from_opt(value: Optional[T]) -> Option[T]:
+        """Converts a Python ``Optional`` to an ``Option``.
+
+        Args:
+            value (Optional[T]): The value to convert.
+
+        Returns:
+            Option[T]: The converted value.
+
+        Examples::
+
+            >>> Option.from_(1)
+            Some(1)
+
+            >>> Option.from_(None)
+            Nil
+        """
+        return Some(value) if value is not None else Nil
 
     @abstractmethod
     def __eq__(self, other: Any) -> bool:
@@ -1162,10 +1182,10 @@ class NilType(Option, Generic[T]):
         return f()
 
     def unwrap_or_default(self, t: type[T]) -> T:
-        if not issubclass(t, Default):
-            raise ValueError("Can not unwrap_or_default on non-Default type")
-
-        return t.default()
+        try:
+            return t.default()
+        except AttributeError:
+            panic("Called unwrap_or_default on Err without t implementing default() function")
 
     def unwrap_unchecked(self) -> T:
         raise RuntimeError("Called unwrap_unchecked on a Nil value")
@@ -1213,10 +1233,13 @@ class NilType(Option, Generic[T]):
         return Some(value)
 
     def get_or_insert_default(self, t: type[T]) -> Some[T]:
-        if not issubclass(t, Default):
-            raise ValueError("Can not get_or_insert_default on non-Default type")
+        try:
+            return Some(t.default())
 
-        return Some(t.default())
+        except AttributeError as exc:
+            raise RuntimeError(
+                "Can not get_or_insert_default Err without t implementing default() function"
+            ) from exc
 
     def get_or_insert_with(self, f: Callable[[], T]) -> Some[T]:
         return Some(f())
@@ -1245,23 +1268,3 @@ class NilType(Option, Generic[T]):
 
 Nil: Final = NilType()
 """A final instance of the ``NilType`` class, representing a ``Nil`` value."""
-
-
-def to_option(opt: Optional[T]) -> Option[T]:
-    """Converts a Python ``Optional`` to a ``Option``.
-
-    Args:
-        opt (Optional[T]): The optional value to convert.
-
-    Returns:
-        Option[T]: The converted option.
-
-    Examples::
-
-        >>> to_option(1)
-        Some(1)
-
-        >>> to_option(None)
-        Nil
-    """
-    return Nil if opt is None else Some(opt)

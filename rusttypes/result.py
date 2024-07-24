@@ -33,7 +33,6 @@ from functools import wraps
 from typing import Any, Callable, Generic, TypeVar
 
 from . import option as o
-from .traits import Default
 from .misc import panic, stringify
 
 T = TypeVar("T")
@@ -81,8 +80,39 @@ class Result(ABC, Generic[T, E]):
     """
 
     @staticmethod
+    def from_opt(opt: o.Option[T], err: E = None) -> Result[T, E]:
+        """Converts an ``Option`` to a ``Result``. If the ``Option`` is ``Some``, the value is
+        returned as an ``Ok``. If the ``Option`` is ``Nil``, the error value is returned as an
+        ``Err``.
+
+        Args:
+            opt (Option[T]): The option to convert.
+            err (E): The error value to return if the option is ``Nil``. Defaults to ``None``.
+
+        Returns:
+            Result[T, E]: ``Ok(T)`` if the option is ``Some``, otherwise ``Err(E)``.
+
+        Examples:
+
+            Lets say we have an option that can be ``Some`` or ``Nil``::
+
+                >>> opt = Some(42)
+
+            Now we can use the ``from_opt`` method to convert the option to a ``Result``::
+
+                >>> Result.from_opt(opt)
+                Ok(42)
+
+            If the option is ``Nil``, we can provide an error value::
+
+                >>> Result.from_opt(Nil, "Some error message")
+                Err("Some error message")
+        """
+        return opt.ok_or(err)
+
+    @staticmethod
     def from_fn(
-        fn: Callable[[], T], error_type: type[E] | tuple[type[E], ...] = Exception
+        fn: Callable[[], T], err_t: type[E] | tuple[type[E], ...] = Exception
     ) -> Result[T, E]:
         """Creates a ``Result`` from a function that can throw an exception. If the function throws
         an exception (``err``), the exception is caught and returned as an ``Err``. Otherwise, the
@@ -90,7 +120,8 @@ class Result(ABC, Generic[T, E]):
 
         Args:
             fn (Callable[[], T]): The function to call.
-            err (Type[E] | tuple[Type[E], ...]): The exception to catch. Defaults to ``Exception``.
+            err_type (Type[E] | tuple[Type[E], ...]): The exception to catch. Defaults to
+                ``Exception``.
 
         Returns:
             Result[T, E]: ``Ok`` if the function is successful, otherwise ``Err``.
@@ -103,15 +134,17 @@ class Result(ABC, Generic[T, E]):
                 def parse_int(s: str) -> int:
                     return int(s)
 
-                Result.from_fn(lambda: parse_int("42"))
+            Now we can use the ``from_`` method to create a ``Result`` from the function::
+
+                >>> Result.from_(lambda: parse_int("42"))
                 Ok(42)
 
-                Result.from_fn(lambda: parse_int("foo"))
+                >>> Result.from_(lambda: parse_int("foo"))
                 Err(ValueError: invalid literal for int() with base 10: 'foo')
         """
         try:
             return Ok(fn())
-        except error_type as e:
+        except err_t as e:
             return Err(e)
 
     @abstractmethod
@@ -929,9 +962,10 @@ class Err(Result, Generic[T, E]):
         panic("Called unwrap on Err")
 
     def unwrap_or_default(self, t: type[T]) -> T:
-        if issubclass(t, Default):
+        try:
             return t.default()
-        panic("Called unwrap_or_default on Err without Default bound")
+        except AttributeError:
+            panic("Called unwrap_or_default on Err without t implementing default() function")
 
     def expect_err(self, msg: str) -> E:
         return self.inner

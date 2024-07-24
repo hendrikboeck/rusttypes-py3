@@ -25,51 +25,60 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+from __future__ import annotations
 
 import math
-from typing import Type, TypeVar
 from dataclasses import dataclass
 
 from rusttypes.option import Nil, Some
-from rusttypes.result import Result, Ok, Err, Default, catch, try_guard
+from rusttypes.result import Result, Ok, Err, catch, try_guard
+
+
+@dataclass
+class Foo:
+    x: int
+
+    @staticmethod
+    def default() -> Foo:
+        return Foo(42)
 
 
 def test_is_ok():
     x = Ok(-3)
-    assert x.is_ok() == True
+    assert x.is_ok() is True
 
     x = Err("Some error message")
-    assert x.is_ok() == False
+    assert x.is_ok() is False
 
 
 def test_is_ok_and():
     x = Ok(2)
-    assert x.is_ok_and(lambda x: x > 1) == True
+    assert x.is_ok_and(lambda x: x > 1) is True
 
     x = Ok(0)
-    assert x.is_ok_and(lambda x: x > 1) == False
+    assert x.is_ok_and(lambda x: x > 1) is False
 
     x = Err("Some error message")
-    assert x.is_ok_and(lambda x: x > 1) == False
+    assert x.is_ok_and(lambda x: x > 1) is False
 
 
 def test_is_err():
     x = Ok(-3)
-    assert x.is_err() == False
+    assert x.is_err() is False
 
     x = Err("Some error message")
-    assert x.is_err() == True
+    assert x.is_err() is True
 
 
 def test_is_err_and():
     x = Err("Some error message")
-    assert x.is_err_and(lambda x: x == "Some error message") == True
+    assert x.is_err_and(lambda x: x == "Some error message") is True
 
     x = Err("Some error message")
-    assert x.is_err_and(lambda x: x == "Some other message") == False
+    assert x.is_err_and(lambda x: x == "Some other message") is False
 
     x = Ok(123)
-    assert x.is_err_and(lambda x: x == "Some error message") == False
+    assert x.is_err_and(lambda x: x == "Some error message") is False
 
 
 def test_ok():
@@ -115,7 +124,6 @@ def test_map_or_else():
 
 
 def test_map_err():
-
     def stringify(x: int) -> str:
         return f"error code {x}"
 
@@ -127,7 +135,6 @@ def test_map_err():
 
 
 def test_inspect():
-
     def is_two(x: int) -> None:
         assert x == 2
 
@@ -139,7 +146,6 @@ def test_inspect():
 
 
 def test_inspect_err():
-
     def is_err(x: str) -> None:
         assert x == "Some error message"
 
@@ -173,22 +179,11 @@ def test_unwrap():
 
 
 def test_unwrap_or_default():
+    x = Ok(Foo(2))
+    assert x.unwrap_or_default(Foo).x == 2
 
-    T = TypeVar("T")
-
-    @dataclass
-    class IntWrapper(Default):
-        value: int
-
-        @classmethod
-        def default(cls: Type[T]) -> T:
-            return IntWrapper(42)
-
-    x = Ok(IntWrapper(2))
-    assert x.unwrap_or_default(IntWrapper).value == 2
-
-    x = Err[IntWrapper, str]("Some error message")
-    assert x.unwrap_or_default(IntWrapper).value == 42
+    x = Err[Foo, str]("Some error message")
+    assert x.unwrap_or_default(Foo).x == 42
 
 
 def test_expect_err():
@@ -232,7 +227,6 @@ def test_and():
 
 
 def test_and_then():
-
     def sq_then_to_string(x: int) -> Result[str, str]:
         if x < 1_000_000 and x > -1_000_000:
             return Ok(str(x * x))
@@ -262,7 +256,6 @@ def test_or():
 
 
 def test_or_else():
-
     def sq(x: int) -> Result[int, int]:
         return Ok(x * x)
 
@@ -286,7 +279,6 @@ def test_unwrap_or():
 
 
 def test_unwrap_or_else():
-
     def count(x: str) -> int:
         return len(x)
 
@@ -317,7 +309,6 @@ def test_unwrap_err_unchecked():
 
 
 def test_catch():
-
     @catch()
     def raise_runtime_error(x: int) -> Result[int, str]:
         if x < 0:
@@ -336,7 +327,7 @@ def test_catch():
     assert raise_runtime_error_2(0) == Err("Some error message")
     assert raise_runtime_error_2(-1) == Err("x must be positive")
 
-    @catch(RuntimeError, map_err = lambda _: "runtime error")
+    @catch(RuntimeError, map_err=lambda _: "runtime error")
     def raise_runtime_error_3() -> Result[int, str]:
         raise RuntimeError("Some error message")
 
@@ -353,7 +344,6 @@ def test_catch():
 
 
 def test_try_guard():
-
     def pos(x: float) -> Result[float, str]:
         return Ok(x) if x >= 0 else Err("x must be positive")
 
